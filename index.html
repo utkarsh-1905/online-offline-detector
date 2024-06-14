@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Chat App</title>
+</head>
+<body>
+
+    <ul class="friends">
+        <!-- display list of all friends -->
+    </ul>
+
+    <!-- from docs -->
+    <script src="/socket.io/socket.io.js"></script> 
+    <script>
+
+        const socket = io()
+
+        const ul = document.querySelector('.friends')
+
+        function createFriend(name){
+            const l = document.createElement('li')
+            const s1 = document.createElement('p')
+            const s2 = document.createElement('p')
+            const t = document.createTextNode(name)
+            const o = document.createTextNode('offline')
+            s1.appendChild(t)
+            s2.appendChild(o)
+            s2.className = name
+            l.appendChild(s1)
+            l.appendChild(s2)
+            ul.appendChild(l)
+        }
+
+        // usage example - createFriend('utkarsh')
+        createFriend('utkarsh')
+
+        async function getFriends(){
+            // get all friends then call createFriend function in loop to display all friends
+        }
+
+        // call this function to update user status
+        function updateFriendStatus(name){
+            const node = document.querySelector(`.${name}`)
+            if(node.textContent === 'offline'){
+                node.textContent = 'online'
+            }else{
+                node.textContent = 'offline'
+            }
+        }
+
+    </script>
+</body>
+</html>

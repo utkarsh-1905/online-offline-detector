@@ -5,7 +5,7 @@ const { createClient } = require('redis')
 const server = http.createServer(app)
 
 async function notifyFriends(msg){
-    
+
 }
 
 const main = async () => {
@@ -36,6 +36,10 @@ const main = async () => {
             notifyFriends(msg)
         })
     })
+
+    app.get('/', (req, res) => {
+        res.sendFile(__dirname + '/index.html');
+      });
 
     server.listen(3000, ()=>{
         console.log("Listening on 3000")
