@@ -37,7 +37,9 @@ const main = async () => {
         })
     })
 
-    app.get('/', (req, res) => {
+    // add persistent storage like postgres
+
+    app.get('/', (_, res) => {
         res.sendFile(__dirname + '/index.html');
       });
 

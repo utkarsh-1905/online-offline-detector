@@ -7,6 +7,10 @@
 </head>
 <body>
 
+    <h2 class="user-name">User</h2>
+
+    <button class="add-friend">Add Friend</button>
+
     <ul class="friends">
         <!-- display list of all friends -->
     </ul>
@@ -14,8 +18,33 @@
     <!-- from docs -->
     <script src="/socket.io/socket.io.js"></script> 
     <script>
+        // ask user name
+
+        const name = prompt("Enter your name");
+        const user = document.querySelector(".user-name");
+        user.textContent = name;
 
         const socket = io()
+
+        const myStatus = document.createElement('span')
+        myStatus.classList.add('my-status')
+        user.appendChild(myStatus)
+
+        const addFriend = document.querySelector(".add-friend")
+
+        addFriend.addEventListener('click',(e)=>{
+            const friend = prompt("Enter friends name");
+            // send friend to backend and add to friends list
+        })
+
+        socket.on('connect',()=>{
+            myStatus.textContent = ' - Online'
+        })
+
+        socket.on('connect_error',(error)=>{
+            myStatus.textContent = ' - Offline'
+            console.log(error.message);
+        })
 
         const ul = document.querySelector('.friends')
 
@@ -32,11 +61,10 @@
             l.appendChild(s2)
             ul.appendChild(l)
         }
-
         // usage example - createFriend('utkarsh')
-        createFriend('utkarsh')
 
         async function getFriends(){
+            // cache this in local storage
             // get all friends then call createFriend function in loop to display all friends
         }
 
