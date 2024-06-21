@@ -15,40 +15,54 @@
     <script src="/socket.io/socket.io.js"></script> 
     <script>
 
-        const socket = io()
+        const socket = io();
 
-        const ul = document.querySelector('.friends')
+        const ul = document.querySelector('.friends');
 
         function createFriend(name){
-            const l = document.createElement('li')
-            const s1 = document.createElement('p')
-            const s2 = document.createElement('p')
-            const t = document.createTextNode(name)
-            const o = document.createTextNode('offline')
-            s1.appendChild(t)
-            s2.appendChild(o)
-            s2.className = name
-            l.appendChild(s1)
-            l.appendChild(s2)
-            ul.appendChild(l)
+            const l = document.createElement('li');
+            const s1 = document.createElement('p');
+            const s2 = document.createElement('p');
+            const t = document.createTextNode(name);
+            const o = document.createTextNode('offline');
+            s1.appendChild(t);
+            s2.appendChild(o);
+            s2.className = name;
+            l.appendChild(s1);
+            l.appendChild(s2);
+            ul.appendChild(l);
         }
 
         // usage example - createFriend('utkarsh')
-        createFriend('utkarsh')
+        // createFriend('utkarsh')
 
         async function getFriends(){
             // get all friends then call createFriend function in loop to display all friends
+            const friends = ['Nikhil', 'Anirudh', 'Krishna', 'Mankirat'];
+
+            
+            friends.forEach(friend => {
+                createFriend(friend);
+            });
         }
+
+        
+        getFriends();
 
         // call this function to update user status
         function updateFriendStatus(name){
-            const node = document.querySelector(`.${name}`)
+            const node = document.querySelector(`.${name}`);
             if(node.textContent === 'offline'){
-                node.textContent = 'online'
+                node.textContent = 'online';
             }else{
-                node.textContent = 'offline'
+                node.textContent = 'offline';
             }
         }
+
+        // Example usage of updateFriendStatus function
+        //updateFriendStatus('Nikhil');
+        
+        
 
     </script>
 </body>
