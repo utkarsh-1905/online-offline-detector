@@ -39,7 +39,7 @@ const main = async () => {
 
     app.get('/', (req, res) => {
         res.sendFile(__dirname + '/index.html');
-      });
+    });
 
     server.listen(3000, ()=>{
         console.log("Listening on 3000")
